@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Game</title>
+</head>
+<body>
+    <h1>Educational Game Platform</h1>
+    <div>
+        <form action="/switch_game" method="post">
+            <label for="game_mode">Select Game Mode:</label>
+            <select name="game_mode" id="game_mode">
+                {% for mode in game_modes %}
+                    <option value="{{ mode }}">{{ mode }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Switch Game</button>
+        </form>
+    </div>
+    <div>
+        <h2>{{ question }}</h2>
+        <form action="/check_answer" method="post">
+            <input type="text" name="answer" placeholder="Enter your answer" required>
+            <button type="submit">Submit</button>
+        </form>
+        {% if result %}
+            <p>{{ result }}</p>
+        {% endif %}
+        <p>Points: {{ points }}</p>
+    </div>
+</body>
+</html>
